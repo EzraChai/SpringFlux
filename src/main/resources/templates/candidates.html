@@ -83,12 +83,12 @@
       function drawColumnChart() {
         const data = new google.visualization.DataTable();
         data.addColumn('string', "Candidate's name");
-        data.addColumn('number', 'Number Of Votes');
+        data.addColumn('number', 'Votes');
         Object.keys(real_data).forEach(function(key) {
           data.addRow([ key, real_data[key] ]);
         });
         const options = {
-          title : 'Candidates stat',
+          title : 'Candidates Stat',
           hAxis : {
             title : 'Candidates',
           },
