@@ -103,6 +103,13 @@ public class VoterController {
 
     @GetMapping("/reset/all/vote")
     public String resetAllVote(){
+
+        List<Candidates> all1 = candidatesRepo.findAll();
+        for (Candidates candidate : all1){
+            candidate.setNumberOfVotes(0);
+            candidatesRepo.save(candidate);
+        }
+
         List<Voters> all = votersRepo.findAll();
         for (Voters voter :all){
             voter.setHasVoted(false);
