@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/voting
-    username: admin
-    password: D9806f2a2b
+    url: mysql://b46d1d94195345:fd7b77e8@us-cdbr-east-04.cleardb.com/heroku_bd56f9a328b0f6e?reconnect=true
+    username: b46d1d94195345
+    password: fd7b77e8
 
   jpa:
     hibernate:
