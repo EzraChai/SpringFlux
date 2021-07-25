@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 @Controller
 public class VoterController {
@@ -88,7 +90,13 @@ public class VoterController {
 
     @GetMapping("/get/candidates")
     public String getCandidates(Model model){
+        Map<String, Integer> graphData = new TreeMap<>();
         List<Candidates> all = candidatesRepo.findAllByOrderByNumberOfVotesDesc();
+
+        for (Candidates candidate : all){
+            graphData.put(candidate.getName(), candidate.getNumberOfVotes());
+        }
+        model.addAttribute("CandidatesForChart",graphData);
         model.addAttribute("Candidates",all);
         return "candidates";
     }

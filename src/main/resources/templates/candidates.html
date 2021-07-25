@@ -5,6 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidates</title>
+  <script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"></script>
   <style>
     body{
       background: rgb(255,241,254);
@@ -68,6 +74,36 @@
 <center>
   <div class="container">
     <div class="main-text">Candidates</div>
+    <canvas id="chart_div"></canvas>
+
+    <script th:inline="javascript">
+      const real_data = /*[[${CandidatesForChart}]]*/'noValue';
+      $(document).ready(function() {
+        google.charts.load('current', {
+          packages : [ 'corechart', 'bar' ]
+        });
+        google.charts.setOnLoadCallback(drawColumnChart);
+        google.charts.setOnLoadCallback(drawPieChart);
+      });
+      function drawColumnChart() {
+        const data = new google.visualization.DataTable();
+        data.addColumn('string', "Candidate's name");
+        data.addColumn('number', 'Number Of Votes');
+        Object.keys(real_data).forEach(function(key) {
+          data.addRow([ key, real_data[key] ]);
+        });
+        const options = {
+          title : 'Candidates stat',
+          hAxis : {
+            title : 'Candidates',
+          },
+          vAxis : {
+            title : 'Number Of Votes'
+          }
+        };
+      }
+    </script>
+
     <table class="styled-table">
       <thead>
       <tr>
@@ -78,14 +114,13 @@
       </thead>
       <tbody>
       <tr class="active-row" th:each="candidate,iter : ${Candidates}">
-        <td style="text-align:center;" th:text="${iter.current}"></td>
+        <td style="text-align:center;" th:text="${iter.count}"></td>
         <td style="text-align:center;" th:text="${candidate.name}"></td>
         <td style="text-align:center;" th:text="${candidate.numberOfVotes}"></td>
       </tr>
       </tbody>
     </table>
   </div>
-
 </center>
 </body>
 </html>
