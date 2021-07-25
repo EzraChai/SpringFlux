@@ -26,12 +26,12 @@ public class VoterController {
 
     @GetMapping("/")
     public String goToVote(){
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/add/vote")
     public String addVote(){
-        return "/addvote";
+        return "addvote";
     }
 
     @PostMapping("/add")
@@ -40,21 +40,21 @@ public class VoterController {
         voter.setName(name);
         voter.setHasVoted(false);
         Voters save = votersRepo.save(voter);
-        return "/addedVoter";
+        return "addedVoter";
     }
 
     @PostMapping("/dologin")
     public String dologin(@RequestParam String name, Model model, HttpSession session){
         List<Voters> usersWithPartOfName = votersRepo.findUsersWithPartOfName(name);
         if (usersWithPartOfName.size() == 0){
-            return "/nameNotFound";
+            return "nameNotFound";
         }
         if (usersWithPartOfName.size() > 1){
-            return "/opps";
+            return "opps";
         }else{
             Voters voters = usersWithPartOfName.get(0);
             if(voters.isHasVoted()){
-                return "/hadVote";
+                return "hadVote";
             }
             session.setAttribute("voter",voters);
 
@@ -62,7 +62,7 @@ public class VoterController {
             model.addAttribute("Candidates",all);
             model.addAttribute("Voter",voters);
 
-            return "/performVote";
+            return "performVote";
         }
     }
 
@@ -77,7 +77,7 @@ public class VoterController {
     public String voteFor(@RequestParam int id, HttpSession session){
         Voters v = (Voters) session.getAttribute("voter");
         if (v.isHasVoted()){
-            return "/hadVote";
+            return "hadVote";
         }
         v.setHasVoted(true);
         votersRepo.save(v);
@@ -85,7 +85,7 @@ public class VoterController {
         Candidates candidate = byId.get();
         candidate.setNumberOfVotes(candidate.getNumberOfVotes() + 1);
         candidatesRepo.save(candidate);
-        return "/voted";
+        return "voted";
     }
 
 }
