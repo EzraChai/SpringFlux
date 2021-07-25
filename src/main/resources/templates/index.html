@@ -62,7 +62,7 @@
             font-weight: 900;
 
             font-size: 32px;
-            padding: 0px;
+            padding: 0;
         }
 
         .paragraph{
@@ -92,7 +92,10 @@
     </div>
     <form action="/dologin" method="post">
         <div>Name</div>
-        <div style="padding-bottom: 10px;"><input type="text" name="name"/>
+        <div style="padding-bottom: 10px;">
+            <label>
+                <input type="text" name="name"/>
+            </label>
         </div>
         <div><input type="submit" value="Submit"/></div>
     </form>

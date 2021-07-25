@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -116,7 +116,7 @@
             border-radius: 40% 100% 60% 70%;
             box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4);
             transform: rotate(8deg) skew(30deg);
-            transform-origin: 0% 0%;
+            transform-origin: 0 0;
             animation-duration: 1s;
             animation-timing-function: ease;
             animation-iteration-count: 1;
@@ -297,7 +297,7 @@
 </main>
 <div class="out">
     <div id="errorText">Please insert your name again.</div>
-    <input style="font-size: 14px;" type="button" onclick="window.location.href='/'" value="Go Back"></input>
+    <input style="font-size: 14px;" type="button" onclick="window.location.href='/'" value="Go Back"/>
 </div>
 </body>
 </html>
