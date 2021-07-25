@@ -26,7 +26,7 @@ public class VoterController {
 
     @GetMapping("/")
     public String goToVote(){
-        return "index.html";
+        return "/index.html";
     }
 
     @GetMapping("/add/vote")
