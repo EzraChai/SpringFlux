@@ -34,13 +34,33 @@ public class VoterController {
         return "addvote";
     }
 
-    @PostMapping("/add")
+    @GetMapping("delete/candidates")
+    public String deleteCandidates(){
+        candidatesRepo.deleteAll();
+        return "CandidatesDeleted";
+    }
+
+    @PostMapping("/add/voter")
     public String addVoter(@RequestParam String name){
         Voters voter = new Voters();
         voter.setName(name);
         voter.setHasVoted(false);
         Voters save = votersRepo.save(voter);
         return "addedVoter";
+    }
+
+    @PostMapping("/add/candidate")
+    public String addcandidate(@RequestParam String name){
+        Candidates candidate = new Candidates();
+        candidate.setName(name);
+        candidate.setNumberOfVotes(0);
+        candidatesRepo.save(candidate);
+        return  "addedCandidate";
+    }
+
+    @GetMapping("/add/candidate")
+    public String addcandidate(){
+        return "addcandidate";
     }
 
     @PostMapping("/dologin")
@@ -71,6 +91,16 @@ public class VoterController {
         List<Candidates> all = candidatesRepo.findAll();
         model.addAttribute("Candidates",all);
         return "candidates";
+    }
+
+    @GetMapping("/reset/all/vote")
+    public String resetAllVote(){
+        List<Voters> all = votersRepo.findAll();
+        for (Voters voter :all){
+            voter.setHasVoted(false);
+            votersRepo.save(voter);
+        }
+        return "reset";
     }
 
     @GetMapping("/voteFor")
