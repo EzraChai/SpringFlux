@@ -71,12 +71,14 @@
     <table class="styled-table">
       <thead>
       <tr>
+        <th>Number</th>
         <th>Candidate's name</th>
         <th>Number of Votes</th>
       </tr>
       </thead>
       <tbody>
-      <tr class="active-row" th:each="candidate : ${Candidates}">
+      <tr class="active-row" th:each="candidate,iter : ${Candidates}">
+        <td style="text-align:center;" th:text="${iter.current}"></td>
         <td style="text-align:center;" th:text="${candidate.name}"></td>
         <td style="text-align:center;" th:text="${candidate.numberOfVotes}"></td>
       </tr>
