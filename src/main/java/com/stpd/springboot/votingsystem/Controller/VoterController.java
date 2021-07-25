@@ -88,7 +88,7 @@ public class VoterController {
 
     @GetMapping("/get/candidates")
     public String getCandidates(Model model){
-        List<Candidates> all = candidatesRepo.findAllOrderByNumberOfVotes();
+        List<Candidates> all = candidatesRepo.findAllByOrderByNumberOfVotesDesc();
         model.addAttribute("Candidates",all);
         return "candidates";
     }
