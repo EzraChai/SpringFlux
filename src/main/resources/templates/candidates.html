@@ -100,15 +100,18 @@
             title : 'Number Of Votes'
           }
         };
+        var chart = new google.visualization.ColumnChart(document
+                .getElementById('chart_div'));
+        chart.draw(data, options);
       }
     </script>
 
     <table class="styled-table">
       <thead>
       <tr>
-        <th>Number</th>
-        <th>Candidate's name</th>
-        <th>Number of Votes</th>
+        <th style="text-align:center;">Number</th>
+        <th style="text-align:center;">Candidate's name</th>
+        <th style="text-align:center;">Number of Votes</th>
       </tr>
       </thead>
       <tbody>
