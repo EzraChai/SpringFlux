@@ -46,11 +46,11 @@
     </div>
 
     <script>
-        const onlyOnKonami = false;
+        var onlyOnKonami = false;
 
         $(function() {
             // Globals
-            let $window = $(window)
+            var $window = $(window)
                 , random = Math.random
                 , cos = Math.cos
                 , sin = Math.sin
@@ -60,19 +60,18 @@
                 , frame = undefined
                 , confetti = [];
 
-            const runFor = 2000;
-            let isRunning = true;
+            var runFor = 2000
+            var isRunning = true
 
             setTimeout(() => {
                 isRunning = false
             }, runFor);
 
             // Settings
-            let konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+            var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
                 , pointer = 0;
 
-
-            const particles = 150
+            var particles = 150
                 , spread = 20
                 , sizeMin = 5
                 , sizeMax = 12 - sizeMin
@@ -85,34 +84,29 @@
                 , dThetaMin = .4
                 , dThetaMax = .7 - dThetaMin;
 
-            const colorThemes = [
-                function () {
-                    return color(200 * random() | 0, 200 * random() | 0, 200 * random() | 0);
-                }, function () {
-                    var black = 200 * random() | 0;
-                    return color(200, black, black);
-                }, function () {
-                    var black = 200 * random() | 0;
-                    return color(black, 200, black);
-                }, function () {
-                    var black = 200 * random() | 0;
-                    return color(black, black, 200);
-                }, function () {
-                    return color(200, 100, 200 * random() | 0);
-                }, function () {
-                    return color(200 * random() | 0, 200, 200);
-                }, function () {
-                    var black = 256 * random() | 0;
-                    return color(black, black, black);
-                }, function () {
+            var colorThemes = [
+                function() {
+                    return color(200 * random()|0, 200 * random()|0, 200 * random()|0);
+                }, function() {
+                    var black = 200 * random()|0; return color(200, black, black);
+                }, function() {
+                    var black = 200 * random()|0; return color(black, 200, black);
+                }, function() {
+                    var black = 200 * random()|0; return color(black, black, 200);
+                }, function() {
+                    return color(200, 100, 200 * random()|0);
+                }, function() {
+                    return color(200 * random()|0, 200, 200);
+                }, function() {
+                    var black = 256 * random()|0; return color(black, black, black);
+                }, function() {
                     return colorThemes[random() < .5 ? 1 : 2]();
-                }, function () {
+                }, function() {
                     return colorThemes[random() < .5 ? 3 : 5]();
-                }, function () {
+                }, function() {
                     return colorThemes[random() < .5 ? 2 : 4]();
                 }
             ];
-
             function color(r, g, b) {
                 return 'rgb(' + r + ',' + g + ',' + b + ')';
             }
@@ -123,14 +117,13 @@
             }
 
             // Create a 1D Maximal Poisson Disc over [0, 1]
-            const radius = 1 / eccentricity, radius2 = radius + radius;
-
+            var radius = 1/eccentricity, radius2 = radius+radius;
             function createPoisson() {
                 // domain is the set of points which are still available to pick from
                 // D = union{ [d_i, d_i+1] | i is even }
-                let domain = [radius, 1 - radius], measure = 1 - radius2, spline = [0, 1];
+                var domain = [radius, 1-radius], measure = 1-radius2, spline = [0, 1];
                 while (measure) {
-                    let dart = measure * random(), i, l, interval, a, b, c, d;
+                    var dart = measure * random(), i, l, interval, a, b, c, d;
 
                     // Find where dart lies
                     for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
@@ -168,7 +161,7 @@
             }
 
             // Create the overarching container
-            const container = document.createElement('div');
+            var container = document.createElement('div');
             container.style.position = 'fixed';
             container.style.top      = '0';
             container.style.left     = '0';
@@ -184,7 +177,7 @@
                 this.inner = document.createElement('div');
                 this.outer.appendChild(this.inner);
 
-                const outerStyle = this.outer.style, innerStyle = this.inner.style;
+                var outerStyle = this.outer.style, innerStyle = this.inner.style;
                 outerStyle.position = 'absolute';
                 outerStyle.width  = (sizeMin + sizeMax * random()) + 'px';
                 outerStyle.height = (sizeMin + sizeMax * random()) + 'px';
@@ -211,7 +204,7 @@
                 // Create the periodic spline
                 this.splineX = createPoisson();
                 this.splineY = [];
-                for (let i = 1, l = this.splineX.length-1; i < l; ++i)
+                for (var i = 1, l = this.splineX.length-1; i < l; ++i)
                     this.splineY[i] = deviation * random();
                 this.splineY[0] = this.splineY[l] = deviation * random();
 
@@ -222,9 +215,9 @@
                     this.theta += this.dTheta * delta;
 
                     // Compute spline and convert to polar
-                    let phi = this.frame % 7777 / 7777, i = 0, j = 1;
+                    var phi = this.frame % 7777 / 7777, i = 0, j = 1;
                     while (phi >= this.splineX[j]) i = j++;
-                    const rho = interpolation(
+                    var rho = interpolation(
                         this.splineY[i],
                         this.splineY[j],
                         (phi-this.splineX[i]) / (this.splineX[j]-this.splineX[i])
@@ -246,7 +239,7 @@
 
                     // Add confetti
 
-                    let theme = colorThemes[onlyOnKonami ? colorThemes.length * random() | 0 : 0]
+                    var theme = colorThemes[onlyOnKonami ? colorThemes.length * random()|0 : 0]
                         , count = 0;
 
                     (function addConfetto() {
@@ -255,7 +248,7 @@
                             return timer = undefined;
 
                         if (isRunning) {
-                            const confetto = new Confetto(theme);
+                            var confetto = new Confetto(theme);
                             confetti.push(confetto);
 
                             container.appendChild(confetto.outer);
@@ -265,13 +258,13 @@
 
 
                     // Start the loop
-                    let prev = undefined;
+                    var prev = undefined;
                     requestAnimationFrame(function loop(timestamp) {
-                        const delta = prev ? timestamp - prev : 0;
+                        var delta = prev ? timestamp - prev : 0;
                         prev = timestamp;
-                        const height = $window.height();
+                        var height = $window.height();
 
-                        for (let i = confetti.length-1; i >= 0; --i) {
+                        for (var i = confetti.length-1; i >= 0; --i) {
                             if (confetti[i].update(height, delta)) {
                                 container.removeChild(confetti[i].outer);
                                 confetti.splice(i, 1);
