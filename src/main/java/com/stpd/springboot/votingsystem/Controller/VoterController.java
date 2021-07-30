@@ -136,7 +136,12 @@ public class VoterController {
 
     }
 
-    @GetMapping("/group/{number}")
+    @GetMapping("/groups")
+    public String groups(){
+        return "group";
+    }
+
+    @GetMapping("/groups/{number}")
     public String groupMember(@PathVariable("number") int number,Model model){
 
         List<Voters> all = votersRepo.findAll();

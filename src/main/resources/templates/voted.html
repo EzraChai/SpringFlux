@@ -1,15 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
     <title>Congratulations!</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Merriweather+Sans");
         body{
+            margin: 0;
+            padding: 0;
             background: rgb(255,241,254);
             background: linear-gradient(90deg, rgba(255,241,254,1) 0%, rgba(225,225,251,1) 29%, rgba(255,255,255,1) 100%);
         }
@@ -39,6 +42,7 @@
     </style>
 </head>
 <body>
+<header th:insert="general.html :: header"> </header>
 <main>
     <div class="container">
         <img src="https://i.ibb.co/vLvdWmw/2548383-min.webp" alt="Fire cracker icon" title="Congratulations!" width="256" height="256">
