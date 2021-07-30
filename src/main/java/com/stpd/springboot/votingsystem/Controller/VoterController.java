@@ -132,8 +132,8 @@ public class VoterController {
 
         v.setHasVoted(true);
         votersRepo.save(v);
-
         return "voted";
+
     }
 
     @GetMapping("/group/{number}")
@@ -141,7 +141,7 @@ public class VoterController {
 
         List<Voters> all = votersRepo.findAll();
         Map map = GroupMember.randomGroupList(all,number);
-        model.addAttribute("GroupsMap",map);
+        model.addAttribute("GroupMembers",map);
         return "groupMember";
     }
 
