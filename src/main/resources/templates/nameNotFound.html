@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
     <title>Name Not Found</title>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Merriweather+Sans");
@@ -19,9 +20,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: "Merriweather Sans", sans-serif;
+            font-family: sans-serif;
         }
         main #errorText {
+            font-family: "Merriweather Sans", sans-serif;
             font-size: 22px;
             margin: 14px 0;
         }
@@ -124,6 +126,7 @@
     </style>
 </head>
 <body>
+<header th:insert="general.html :: header"> </header>
 <main>
     <svg
             viewBox="0 0 541.17206 328.45184"
