@@ -5,10 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <title>404 - Page Not Found</title>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Merriweather+Sans");
         body{
+            margin: 0;
+            padding: 0;
             background: rgb(255,241,254);
             background: linear-gradient(90deg, rgba(255,241,254,1) 0%, rgba(225,225,251,1) 29%, rgba(255,255,255,1) 100%);
         }
@@ -124,6 +127,7 @@
     </style>
 </head>
 <body>
+<header th:insert="general.html :: header"> </header>
 <main>
     <svg
             viewBox="0 0 541.17206 328.45184"
