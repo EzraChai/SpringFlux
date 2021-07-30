@@ -66,7 +66,7 @@
         }
 
         .paragraph{
-            padding-top: 4px;
+            padding-top: 14px;
             padding-bottom: 30px;
         }
 
@@ -78,12 +78,15 @@
 
         .btn {
             position: relative;
-            padding: 10px 20px 20px;
+            padding: 10px 20px ;
             background: white;
-            font-size: 28px;
             border-top-right-radius: 10px;
             border-bottom-left-radius: 10px;
             transition: all 1s;
+            color: #413087;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
         }
         .btn:after, .btn:before {
             content: " ";
@@ -126,6 +129,7 @@
 <div class="container">
     <div class="text-container">
         <span class="btn">Vote Now</span>
+
         <div class="paragraph">Please enter your name.</div>
     </div>
     <form action="/dologin" method="post">
