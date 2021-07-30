@@ -5,7 +5,6 @@ import com.stpd.springboot.votingsystem.Repository.VotersRepo;
 import com.stpd.springboot.votingsystem.model.Candidates;
 import com.stpd.springboot.votingsystem.model.Voters;
 import com.stpd.springboot.votingsystem.utils.GroupMember;
-import javafx.scene.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
