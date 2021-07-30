@@ -4,18 +4,18 @@ import com.stpd.springboot.votingsystem.Repository.CandidatesRepo;
 import com.stpd.springboot.votingsystem.Repository.VotersRepo;
 import com.stpd.springboot.votingsystem.model.Candidates;
 import com.stpd.springboot.votingsystem.model.Voters;
+import com.stpd.springboot.votingsystem.utils.GroupMember;
+import javafx.scene.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
+import java.util.*;
 
 @Controller
 public class VoterController {
@@ -121,16 +121,30 @@ public class VoterController {
     @GetMapping("/voteFor")
     public String voteFor(@RequestParam int id, HttpSession session){
         Voters v = (Voters) session.getAttribute("voter");
+
         if (v.isHasVoted()){
             return "hadVote";
         }
-        v.setHasVoted(true);
-        votersRepo.save(v);
+
         Optional<Candidates> byId = candidatesRepo.findById((long) id);
         Candidates candidate = byId.get();
         candidate.setNumberOfVotes(candidate.getNumberOfVotes() + 1);
         candidatesRepo.save(candidate);
+
+        v.setHasVoted(true);
+        votersRepo.save(v);
+
         return "voted";
     }
+
+    @GetMapping("/group/{number}")
+    public String groupMember(@PathVariable("number") int number,Model model){
+
+        List<Voters> all = votersRepo.findAll();
+        Map map = GroupMember.randomGroupList(all,number);
+        model.addAttribute("GroupsMap",map);
+        return "groupMember";
+    }
+
 
 }

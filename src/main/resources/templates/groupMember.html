@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Members</title>
+    <style>
+        body{
+            background: rgb(255,241,254);
+            background: linear-gradient(90deg, rgba(255,241,254,1) 0%, rgba(225,225,251,1) 29%, rgba(255,255,255,1) 100%);
+            font-family: sans-serif;
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            width: 80%;
+            max-width:800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+            background-color: #7c5cff;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #7c5cff;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #afafff;
+        }
+
+        .main-text{
+            padding-top: 20px;
+            color: #3a2b78;
+            padding-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div class="main-text">
+        Group Members
+    </div>
+    <div th:each="group : ${GroupMembers}">
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th style="text-align:center; text-weight:bold;">Group <span th:text="${group.key} + 1"></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="active-row" th:each="value : ${group.value}">
+                <td style="text-align:center;" th:text="${value.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+</center>
+</body>
+</html>
