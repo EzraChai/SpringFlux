@@ -45,10 +45,12 @@
 </g></svg>
     </span><span style="padding: 0 4px;">4 Baiduri</span>
       </div></a>
-    <a th:href="@{'/get/candidates'}">Candidates</a>
-    <a th:href="@{'/group'}">Group</a>
-    <a href="javascript:void(0);" class="icon" onclick="openNav()">&#9776;</a>
-
+    <div class="header-right">
+      <a th:href="@{'/get/candidates'}">Candidates</a>
+      <a th:href="@{'/groups'}">Group</a>
+      <div class="small-spacing"></div>
+      <a href="javascript:void(0);" class="icon" onclick="openNav()">&#9776;</a>
+    </div>
 
   </div>
   <!-- The overlay -->
@@ -60,7 +62,7 @@
     <!-- Overlay content -->
     <div class="overlay-content">
       <a th:href="@{'/get/candidates'}">Candidates</a>
-      <a th:href="@{'/group'}">Group</a>
+      <a th:href="@{'/groups'}">Group</a>
     </div>
   </div>
   <script>

@@ -147,8 +147,6 @@
     float: right;
 }
 
-
-
 @media screen and (max-height: 450px) {
     .overlay {overflow-y: auto;}
     .overlay a {font-size: 20px}
