@@ -66,7 +66,7 @@ public class VoterController {
 
     @PostMapping("/dologin")
     public String dologin(@RequestParam String name, Model model, HttpSession session){
-        List<Voters> usersWithPartOfName = votersRepo.findUsersWithPartOfName(name);
+        List<Voters> usersWithPartOfName = votersRepo.findUsersWithPartOfName(name.trim());
         if (usersWithPartOfName.size() == 0){
             return "nameNotFound";
         }
