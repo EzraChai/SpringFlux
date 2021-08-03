@@ -18,9 +18,14 @@ public class GroupMember {
         int listSize = list.size();
         int groupMemberInAGroup = listSize / number;
 
-        if(listSize == 0){
+        if(number > listSize){
+            number = listSize;
+        }
+
+        if(number <= 0){
             return map;
         }
+
 
         Collections.shuffle(list, new Random(3));
 

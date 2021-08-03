@@ -150,5 +150,11 @@ public class VoterController {
         return "groupMember";
     }
 
+    @GetMapping("/meet-link")
+    public String meetLink(Model model){
+
+        return "meet-link";
+    }
+
 
 }
