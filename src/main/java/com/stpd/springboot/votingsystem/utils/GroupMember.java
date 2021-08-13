@@ -18,10 +18,6 @@ public class GroupMember {
         int listSize = list.size();
         int groupMemberInAGroup = listSize / number;
 
-        if(number == 0){
-            return map;
-        }
-
         if(number > listSize){
             number = listSize;
         }
